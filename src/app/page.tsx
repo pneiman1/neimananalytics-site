@@ -35,12 +35,46 @@ const CAPABILITIES = [
   },
 ];
 
+/**
+ * The three live demos, each a complete vertical on the same platform: warehouse
+ * through dbt models through API through interface. Screenshots in
+ * public/verticals are captured from the live Overview of each
+ * (scripts/capture-verticals.sh), so what a visitor sees here is what they get
+ * when they click through — including the palette.
+ */
+const VERTICALS = [
+  {
+    name: "Regimen",
+    domain: "Dermatology",
+    href: "https://regimen.neimananalytics.com/executive",
+    shot: "/verticals/regimen.png",
+    blurb:
+      "Provider performance, channel attribution and recall for a cosmetic dermatology practice — the vertical the platform was first built for.",
+  },
+  {
+    name: "Yield",
+    domain: "Coffee",
+    href: "https://yield.neimananalytics.com/overview",
+    shot: "/verticals/yield.png",
+    blurb:
+      "Extraction yield, roast loss and three-state inventory for a specialty roaster and its cafés — measured in pounds, from green lot to the cup.",
+  },
+  {
+    name: "Barrel",
+    domain: "Beer",
+    href: "https://barrel.neimananalytics.com/overview",
+    shot: "/verticals/barrel.png",
+    blurb:
+      "Fermenter capacity, yield loss by stage and TTB reconciliation for a production brewery with a taproom — built on the constraint that binds it.",
+  },
+];
+
 const WORK = [
   {
-    name: "DermIQ",
+    name: "Regimen",
     tag: "Product",
     summary:
-      "Analytics intelligence for cosmetic dermatology practices. Tracks provider performance, channel attribution, patient recall, and no-show risk — from raw practice-management data through to a dashboard clinicians actually open.",
+      "Analytics intelligence for cosmetic dermatology practices — provider performance, channel attribution, recall and no-show risk, from raw practice-management data through to a dashboard clinicians actually open. The first of the three verticals below, and the one the shared platform was factored out of.",
     stack: ["Snowflake", "dbt", "Airflow", "FastAPI", "Next.js", "Fly.io"],
     featured: true,
   },
@@ -127,6 +161,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---- Live demos ------------------------------------------------ */}
+      <section id="demos" className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-28">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            Live demos
+          </p>
+          <h2 className="text-silver mt-4 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+            One platform, three industries.
+          </h2>
+          <p className="mt-5 max-w-2xl leading-relaxed text-muted">
+            The same warehouse, modelling and API layer, pointed at three
+            different businesses. Each one answers the questions its operator
+            actually opens a laptop to ask — in that industry&rsquo;s own units.
+            All three are live and running on generated data.
+          </p>
+        </Reveal>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {VERTICALS.map((v, i) => (
+            <Reveal key={v.name} delay={i * 110}>
+              <a
+                href={v.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group card flex h-full flex-col overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              >
+                <div className="relative overflow-hidden border-b border-line bg-white">
+                  {/* Wide dashboard crop. The intrinsic size is the capture
+                      size, so the browser reserves the right box before the
+                      image lands and the card never jumps. */}
+                  <img
+                    src={v.shot}
+                    alt={`The ${v.name} dashboard — its Overview page, captured from the live site`}
+                    width={1440}
+                    height={640}
+                    loading="lazy"
+                    decoding="async"
+                    className="block w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
+
+                <div className="flex flex-1 flex-col p-7">
+                  <div className="flex items-center justify-between gap-4">
+                    <h3 className="font-display text-2xl font-semibold tracking-tight">
+                      {v.name}
+                    </h3>
+                    <span className="rounded-full border border-line px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
+                      {v.domain}
+                    </span>
+                  </div>
+
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                    {v.blurb}
+                  </p>
+
+                  <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.15em] text-muted transition-colors group-hover:text-white">
+                    Open the demo
+                    <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                      &rarr;
+                    </span>
+                  </span>
+                </div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* ---- Capabilities --------------------------------------------- */}
       <section
         id="capabilities"
@@ -183,10 +285,11 @@ export default function Home() {
                 value leaks out.
               </p>
               <p>
-                Right now that means{" "}
-                <span className="text-foreground">DermIQ</span>, a vertical
-                analytics product for cosmetic dermatology practices, and the
-                shared platform underneath it.
+                Right now that means three vertical analytics products —{" "}
+                <span className="text-foreground">Regimen</span> for
+                dermatology, <span className="text-foreground">Yield</span> for
+                coffee and <span className="text-foreground">Barrel</span> for
+                beer — and the shared platform underneath them.
               </p>
             </div>
           </Reveal>

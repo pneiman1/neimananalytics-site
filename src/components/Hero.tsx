@@ -56,13 +56,10 @@ export function Hero() {
 
       <Reveal delay={240}>
         <div className="mt-12 flex flex-wrap items-center gap-4">
-          <a
-            href="https://derm-iq.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            See DermIQ live
+          {/* Points at the demos section rather than a single product: there
+              are three live now, and derm-iq.io is a redirect to one of them. */}
+          <a href="#demos" className="btn btn-primary">
+            See the live demos
           </a>
           <a href="#contact" className="btn btn-secondary">
             Get in touch

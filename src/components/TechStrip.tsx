@@ -4,7 +4,7 @@ import { AirflowMark } from "@/components/AirflowMark";
 import { BRAND_MARKS } from "@/lib/brand-marks";
 
 /**
- * The stack behind DermIQ, shown as brand marks under the hero CTAs,
+ * The stack behind all three verticals, shown as brand marks under the hero CTAs,
  * each in its own brand color.
  *
  * Airflow is a real multi-color component: its pinwheel is four two-tone

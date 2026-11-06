@@ -21,7 +21,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Neiman Analytics — Data platforms for healthcare",
   description:
-    "Phillip Neiman builds analytics platforms that turn operational data into decisions. Creator of DermIQ.",
+    "Phillip Neiman builds analytics platforms that turn operational data into decisions. Creator of Regimen, Yield and Barrel.",
 };
 
 export default function RootLayout({
