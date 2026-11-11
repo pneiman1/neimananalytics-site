@@ -67,6 +67,19 @@ const VERTICALS = [
     blurb:
       "Fermenter capacity, yield loss by stage and TTB reconciliation for a production brewery with a taproom — built on the constraint that binds it.",
   },
+  // Not a fourth vertical, and the card says so. The three above are the same
+  // platform pointed at three industries; this one is the service that reads
+  // the paperwork their cost numbers come from, which is why it gets its own
+  // alt text instead of the "its Overview page" template.
+  {
+    name: "medex",
+    domain: "Documents",
+    href: "https://extract.neimananalytics.com/",
+    shot: "/verticals/medex.png",
+    alt: "The medex review queue — a billing packet's extracted fields beside the page they came off, captured from the live site",
+    blurb:
+      "Billing packets and supplier invoices in as PDFs, line items out as rows — with the low-confidence fields put in front of a human before anything counts. It is where Regimen's cost data comes from.",
+  },
 ];
 
 const WORK = [
@@ -168,17 +181,19 @@ export default function Home() {
             Live demos
           </p>
           <h2 className="text-silver mt-4 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-            One platform, three industries.
+            Three industries, and the service behind them.
           </h2>
           <p className="mt-5 max-w-2xl leading-relaxed text-muted">
-            The same warehouse, modelling and API layer, pointed at three
-            different businesses. Each one answers the questions its operator
-            actually opens a laptop to ask — in that industry&rsquo;s own units.
-            All three are live and running on generated data.
+            The first three are the same warehouse, modelling and API layer
+            pointed at three different businesses. Each one answers the
+            questions its operator actually opens a laptop to ask — in that
+            industry&rsquo;s own units. The fourth is the extraction service
+            that turns their incoming paperwork into rows. All four are live
+            and running on generated data.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {VERTICALS.map((v, i) => (
             <Reveal key={v.name} delay={i * 110}>
               <a
@@ -193,7 +208,7 @@ export default function Home() {
                       image lands and the card never jumps. */}
                   <img
                     src={v.shot}
-                    alt={`The ${v.name} dashboard — its Overview page, captured from the live site`}
+                    alt={v.alt ?? `The ${v.name} dashboard — its Overview page, captured from the live site`}
                     width={1440}
                     height={640}
                     loading="lazy"
