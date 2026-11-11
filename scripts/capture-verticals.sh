@@ -1,5 +1,5 @@
 #!/bin/bash
-# Re-capture the three vertical thumbnails from the LIVE sites.
+# Re-capture the four demo thumbnails from the LIVE sites.
 #
 # Captured from production rather than from a local dev server on purpose: the
 # point of these images is to show a visitor what they will actually get when
@@ -27,6 +27,11 @@ shoot() {
 shoot regimen https://regimen.neimananalytics.com/executive
 shoot yield   https://yield.neimananalytics.com/overview
 shoot barrel  https://barrel.neimananalytics.com/overview
+# medex is not a dashboard, so the crop lands on the review queue itself --
+# the extracted fields beside the page they came off, which is the whole
+# product in one screen. Its own page sets a 1280 viewport, so the 1440 window
+# shows it at its intended width rather than reflowed.
+shoot medex   https://extract.neimananalytics.com/
 
 echo
 ls -lh public/verticals/*.png | awk '{print "  "$9"  "$5}'
